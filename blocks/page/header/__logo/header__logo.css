@@ -1,0 +1,7 @@
+.header__logo {
+    border: 1px solid red;
+    max-width: 142px;
+    height: 33px;
+    background-image: url();
+    background-size: contain;
+}
