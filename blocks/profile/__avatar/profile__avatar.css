@@ -1,0 +1,8 @@
+.profile__avatar {
+    border: 1px solid red;
+    width: 120px;
+    height: 120px;
+    background-image: url(../../../images/logo-profile.jpg);
+    background-size: cover;
+    border-radius: 50%;
+}
