@@ -1,0 +1,11 @@
+.profile__subtitle {
+    border: 1px solid red;
+    max-width: 318px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+    text-rendering: optimizeLegibility;
+    grid-column: 1/2;
+}

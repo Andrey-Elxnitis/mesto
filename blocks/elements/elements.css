@@ -1,0 +1,13 @@
+@import url(../element/element.css);
+
+.elements {
+    border: 1px solid red;
+    max-width: 882px;
+    height: 744px;
+    margin-top: 51px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+}

@@ -1,0 +1,11 @@
+@import url(./__rectangle/edit-button__rectangle.css);
+@import url(./__image/edit-button__image.css);
+
+.edit-button {
+    width: 24px;
+    height: 24px;
+    background: none;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-top: 19px;
+}

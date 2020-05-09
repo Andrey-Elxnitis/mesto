@@ -1,0 +1,8 @@
+.edit-button__rectangle {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
