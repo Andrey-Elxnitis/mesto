@@ -7,3 +7,11 @@
     align-self: center;
     margin-left: auto;
 }
+
+@media screen and (max-width: 650px) {
+    .add-button {
+        width: 282px;
+        margin-top: 36px;
+        margin-left: 0;
+    }
+}

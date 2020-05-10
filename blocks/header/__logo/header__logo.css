@@ -1,8 +1,13 @@
 .header__logo {
-    border: 1px solid red;
     max-width: 142px;
     height: 33px;
     background-image: url(../../../images/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 650px) {
+    .header__logo {
+        margin-left: 27px;
+    }
 }
