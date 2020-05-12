@@ -8,4 +8,11 @@
     grid-column: 2/3;
     grid-row: 1/2;
     margin-top: 19px;
+    position: relative;
+    border: none;
+    transition: all 1s ease-in-out;
+}
+
+.edit-button:hover {
+    opacity: 0.6;
 }

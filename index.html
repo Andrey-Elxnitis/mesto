@@ -8,17 +8,36 @@
 </head>
 <body>
   <div class="page">
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button">
+        <img class="popup__image" src="./images/Close-Icon.png" alt="крестик"></img>
+        </button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <div class="popup__inputs">
+        <input class="popup__name" type="text" value="Жак-Ив Кусто">
+        <div class="popup__line"></div>
+        <input class="popup__text" type="text" value="Исследователь океана">
+        <div class="popup__line"></div>
+        </div>
+        <button type="submit" class="popup__button">
+          <p class="popup__button-text">Сохранить</p>
+          <div class="popup__button-rectangle"></div>
+        </button>
+        <div class="popup__rectangle"></div>
+      </div>
+    </div>
     <header class="header">
       <div class="header__logo"></div>
       <div class="header__line"></div>
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/logo-profile.jpg"></img>
+        <img class="profile__avatar" src="./images/logo-profile.jpg" alt="изображение"></img>
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="edit-button">
-            <img class="edit-button__image" src="./images/edit-button.png">
+            <img class="edit-button__image" src="./images/edit-button.png" alt="карандаш"></img>
             <div class="edit-button__rectangle"></div>
           </button>
           <p class="profile__subtitle">Исследователь океана</p>
@@ -82,8 +101,7 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-
-
   </div>
+  <script src="./javascript/javascript.js"></script>
 </body>
 </html>

@@ -6,9 +6,16 @@
     background: none;
     align-self: center;
     margin-left: auto;
+    position: relative;
+    border: none;
+    transition: all 1s ease-in-out;
 }
 
-@media screen and (max-width: 650px) {
+.add-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 660px) {
     .add-button {
         width: 282px;
         margin-top: 36px;
