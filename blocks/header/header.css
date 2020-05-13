@@ -1,5 +1,4 @@
 @import url(./__logo/header__logo.css);
-@import url(./__line/header__line.css);
 
 .header {
     max-width: 882px;
@@ -8,9 +7,7 @@
     margin-right: auto;
     padding-top: 45px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
 @media screen and (max-width: 660px) {

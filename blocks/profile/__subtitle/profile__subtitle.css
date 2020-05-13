@@ -9,7 +9,7 @@
     grid-column: 1/2;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 920px) {
     .profile__subtitle {
         max-width: 280px;
         font-size: 14px;

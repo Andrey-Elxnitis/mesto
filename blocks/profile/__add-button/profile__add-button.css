@@ -1,22 +1,22 @@
-@import url(./__rectangle/add-button__rectangle.css);
-
-.add-button {
+.profile__add-button {
     width: 150px;
     height: 50px;
     background: none;
     align-self: center;
     margin-left: auto;
     position: relative;
-    border: none;
     transition: all 1s ease-in-out;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    border-radius: 2px;
 }
 
-.add-button:hover {
+.profile__add-button:hover {
     opacity: 0.6;
 }
 
-@media screen and (max-width: 660px) {
-    .add-button {
+@media screen and (max-width: 920px) {
+    .profile__add-button {
         width: 282px;
         margin-top: 36px;
         margin-left: 0;

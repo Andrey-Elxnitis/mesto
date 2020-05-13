@@ -1,7 +1,4 @@
-@import url(./__rectangle/edit-button__rectangle.css);
-@import url(./__image/edit-button__image.css);
-
-.edit-button {
+.profile__edit-button {
     width: 24px;
     height: 24px;
     background: none;
@@ -9,10 +6,11 @@
     grid-row: 1/2;
     margin-top: 19px;
     position: relative;
-    border: none;
     transition: all 1s ease-in-out;
+    border: 1px solid #fff;
+    box-sizing: border-box;
 }
 
-.edit-button:hover {
+.profile__edit-button:hover {
     opacity: 0.6;
 }

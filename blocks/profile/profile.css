@@ -1,7 +1,11 @@
 @import url(./__avatar/profile__avatar.css);
 @import url(./__info/profile__info.css);
 @import url(./__title/profile__title.css);
+@import url(./__edit-button/profile__edit-button.css);
+@import url(./__edit-image/profile__edit-image.css);
 @import url(./__subtitle/profile__subtitle.css);
+@import url(./__add-button/profile__add-button.css);
+@import url(./__add-image/profile__add-image.css);
 
 .profile {
     max-width: 882px;
@@ -12,7 +16,7 @@
     flex-direction: row;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 920px) {
     .profile {
         max-width: 282px;
         flex-direction: column;

@@ -3,13 +3,8 @@
 @import url(./__image/popup__image.css);
 @import url(./__title/popup__title.css);
 @import url(./__inputs/popup__inputs.css);
-@import url(./__name/popup__name.css);
-@import url(./__text/popup__text.css);
-@import url(./__line/popup__line.css);
+@import url(./__input/popup__input.css);
 @import url(./__button/popup__button.css);
-@import url(./__button-text/popup__button-text.css);
-@import url(./__button-rectangle/popup__button-rectangle.css);
-@import url(./__rectangle/popup__rectangle.css);
 
 .popup {
     top: 0;

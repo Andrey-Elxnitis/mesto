@@ -1,4 +1,7 @@
-.popup__name {
+@import url(./_name/poput__input_name.css);
+@import url(./_text/popup__input_text.css);
+
+.popup__input {
     font-family: 'Inter', 'Arial', sans-serif;
     width: 358px;
     position: relative;
@@ -8,10 +11,17 @@
     font-size: 14px;
     line-height: 17px;
     color: #000;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding-bottom: 13px;
+    margin-bottom: 30px;
+}
+
+.popup__input:last-child {
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 550px) {
-    .popup__name {
+    .popup__input {
         width: 198px;
     }
 }

@@ -1,16 +1,26 @@
-const editButton = document.querySelector(".edit-button");
+const editButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const closeButton = document.querySelector(".popup__close-button");
 const sendButton = document.querySelector(".popup__button");
 const profileName = document.querySelector(".profile__title");
 const profileText = document.querySelector(".profile__subtitle");
-const popupName = document.querySelector(".popup__name");
-const popupText = document.querySelector(".popup__text");
+let popupName = document.querySelector(".popup__input_name");
+let popupText = document.querySelector(".popup__inpur_text");
 
 //функция открытия popup
 
 function openPopup() { 
     popup.classList.add("popup__active");
+
+    function profile(e) {
+        e.preventDefault();
+        popupName = document.querySelector(".popup__input_name");
+        popupText = document.querySelector(".popup__input_text");
+        profileName.textContent = popupName.value;
+        profileText.textContent = popupText.value;
+    
+        closePopup();
+    }
 }
 //функция закрытия popup
 
@@ -22,8 +32,8 @@ function closePopup() {
 
 function profile(e) {
     e.preventDefault();
-    let popupName = document.querySelector(".popup__name");
-    let popupText = document.querySelector(".popup__text");
+    popupName = document.querySelector(".popup__input_name");
+    popupText = document.querySelector(".popup__input_text");
     profileName.textContent = popupName.value;
     profileText.textContent = popupText.value;
 
@@ -40,6 +50,6 @@ function closePopupEnter(e) {
 
 editButton.addEventListener("click", openPopup);
 closeButton.addEventListener("click", closePopup);
-sendButton.addEventListener("click", profile);
+sendButton.addEventListener("submit", profile); 
 popupName.addEventListener("keypress", closePopupEnter);
 popupText.addEventListener("keypress", closePopupEnter);

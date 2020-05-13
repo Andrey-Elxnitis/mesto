@@ -1,0 +1,16 @@
+.element__like {
+    width: 21px;
+    height: 18px;
+    background: none;
+    border: none;
+    margin-top: 6px;
+    margin-right: 7px;
+}
+
+.element__like:hover {
+    opacity: 0.6;
+}
+
+.element__like:focus {
+    outline: none;
+}
