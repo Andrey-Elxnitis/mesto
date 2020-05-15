@@ -11,6 +11,12 @@
     justify-content: center;
 }
 
+@media screen and (max-width: 920px) {
+    .elements {
+        max-width: 650px;
+    }
+}
+
 @media screen and (max-width: 660px) {
     .elements {
         margin-top: 36px;
