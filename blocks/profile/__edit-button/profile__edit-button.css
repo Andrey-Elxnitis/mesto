@@ -9,8 +9,15 @@
     transition: all 1s ease-in-out;
     border: 1px solid #fff;
     box-sizing: border-box;
+    background-image: url(../../../images/Edit-Button.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__edit-button:hover {
     opacity: 0.6;
+}
+
+.profile__edit-button:focus {
+    outline: none;
 }

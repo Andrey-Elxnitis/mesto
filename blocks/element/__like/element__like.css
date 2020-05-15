@@ -5,6 +5,8 @@
     border: none;
     margin-top: 6px;
     margin-right: 7px;
+    background-image: url(../../../images/Group.png);
+    background-repeat: no-repeat;
 }
 
 .element__like:hover {

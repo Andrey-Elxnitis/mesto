@@ -9,10 +9,17 @@
     border: 2px solid #fff;
     box-sizing: border-box;
     border-radius: 2px;
+    background-image: url(../../../images/Vector.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__add-button:hover {
     opacity: 0.6;
+}
+
+.profile__add-button:focus {
+    outline: none;
 }
 
 @media screen and (max-width: 920px) {
