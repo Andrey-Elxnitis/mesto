@@ -24,7 +24,7 @@ function closePopup() {
 
 
 function profile(e) {
-    e.preventDefault();
+    e.preventDefault(); 
     profileName.textContent = popupName.value;
     profileText.textContent = popupText.value;
 
