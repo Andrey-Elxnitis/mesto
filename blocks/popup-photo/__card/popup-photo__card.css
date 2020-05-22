@@ -1,0 +1,4 @@
+.popup-photo__card {
+    position: relative;
+    z-index: 3;
+}

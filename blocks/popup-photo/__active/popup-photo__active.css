@@ -1,4 +1,4 @@
-.popup__active {
+.popup-photo__active {
     visibility: visible;
     opacity: 1;
     transition: visibility 3s, opacity 0.6s linear;
