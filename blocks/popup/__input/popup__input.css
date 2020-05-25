@@ -1,6 +1,3 @@
-@import url(./_name/poput__input_name.css);
-@import url(./_text/popup__input_text.css);
-
 .popup__input {
     font-family: 'Inter', 'Arial', sans-serif;
     width: 358px;

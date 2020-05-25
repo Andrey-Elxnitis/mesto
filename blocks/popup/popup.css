@@ -1,13 +1,14 @@
 @import url(./__container/popup__container.css);
 @import url(./__container/_card/popup__container_card.css);
 @import url(./__close-button/popup__close-button.css);
-@import url(./__close-button/_card/popup__close-button_card.css);
 @import url(./__image/popup__image.css);
 @import url(./__title/popup__title.css);
 @import url(./__inputs/popup__inputs.css);
 @import url(./__input/popup__input.css);
 @import url(./__button/popup__button.css);
 @import url(./__card/popup__card.css);
+@import url(./__card-image/popup__card-image.css);
+@import url(./__card-name/popup__card-name.css);
 
 .popup {
     top: 0;
@@ -19,8 +20,8 @@
     z-index: 2;
     justify-content: center;
     align-items: center;
-    background-color: rgb(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .5);
     visibility: hidden;
     opacity: 0;
-    transition: visibility 3s, opacity 0.6s linear;
+    transition: visibility 1s, opacity 0.6s linear;
 }
