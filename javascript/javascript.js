@@ -1,9 +1,6 @@
 const editButton = document.querySelector(".profile__edit-button"); //кнопка открытия popup редактирования профиля
 const addButton = document.querySelector(".profile__add-button"); //кнопка открытия popup редактирования карточек
-const closeButton = document.querySelector(".popup__close-button"); //кнопка закрытия popup
-const closeButtonCard = document.querySelector(".popup__close-button_card"); //кнопка закрытия popup__card
-const closeButtonPhoto = document.querySelector(".popup__close-button_photo"); //кнопка закрытия popup-photo
-const popupOkna = document.querySelector(".popup-modal"); //общая секция popup для отслеживания клика
+const popups = document.querySelector(".popups"); //общая секция popup для отслеживания клика
 const popup = document.querySelector(".popup_type_profile"); //popup
 const popupCard = document.querySelector(".popup_type_card"); //popup_card
 const popupPhoto = document.querySelector(".popup_type_photo"); //popup_photo
@@ -50,13 +47,13 @@ const initialCards = [
 
 //функция открытия/закрытия popup  
 function open(elem) {
-    elem.classList.toggle("popup__active");
+    elem.classList.toggle("popup_active");
 };
 
 //функция закрытия popup одной кнопкой
 function closePopup (event) {
     if (event.target.closest('.popup__close-button')){
-      event.target.closest('.popup').classList.toggle('popup__active');
+      event.target.closest('.popup').classList.toggle('popup_active');
     }
   };
 
@@ -126,4 +123,4 @@ editButton.addEventListener("click", editFormProfile);
 addButton.addEventListener("click", () => {open(popupCard)});
 form.addEventListener("submit", profile);
 formCard.addEventListener("submit", addCardNew);
-popupOkna.addEventListener("click", closePopup);
+popups.addEventListener("click", closePopup);
