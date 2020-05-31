@@ -9,6 +9,7 @@
     margin-bottom: 36px;
     display: flex;
     justify-content: center;
+    align-items: center;
     border: none;
     transition: all 1s ease-in-out;
     background-color: #000;
