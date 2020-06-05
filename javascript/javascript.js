@@ -16,7 +16,6 @@ let popupName = document.querySelector(".popup__input_name"); //поле име�
 let popupText = document.querySelector(".popup__input_text"); //поле текст профиля в popup
 let popupCardLink = document.querySelector(".popup__input_link"); //находим поле ссылки в popup__card
 let popupCardTitle = document.querySelector(".popup__input_title"); //находим поле названия в popup__card
-
 //массив карточек 
 const initialCards = [
     {
@@ -45,6 +44,12 @@ const initialCards = [
     }
 ];
 
+function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+      open(document.querySelector('.popup_active'));
+    };
+  };
+
 //функция открытия/закрытия popup  
 function open(elem) {
     elem.classList.toggle("popup_active");
@@ -56,6 +61,12 @@ function closePopup (event) {
       event.target.closest('.popup').classList.toggle('popup_active');
     }
   };
+
+//функция закрытия popup если кликаем на оверлей
+document.addEventListener('click', function (evt) {
+  evt.target.classList.toggle('popup_active');
+  evt.stopPropagation();
+});
 
 //функция добавления карточек из массива
 function addCard(link, name) {
@@ -103,7 +114,7 @@ function addCardNew(e) {
 };
 
 //функция подставноки значений профиля в форму 
-function editFormProfile() {
+ function editFormProfile() {
     popupName.value = profileName.textContent;
     popupText.value = profileText.textContent;
 
@@ -124,3 +135,4 @@ addButton.addEventListener("click", () => {open(popupCard)});
 form.addEventListener("submit", profile);
 formCard.addEventListener("submit", addCardNew);
 popups.addEventListener("click", closePopup);
+document.addEventListener('keydown', closePopupEsc);
