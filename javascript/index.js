@@ -10,52 +10,25 @@ const form = document.querySelector(".popup__container"); //форма проф�
 const formCard = document.querySelector(".popup__container_card"); //форма карточек
 const elements = document.querySelector(".elements"); //контейнер для карточек
 const elementTemplate = document.querySelector("#element-template").content; //находим заготовку
-let profileName = document.querySelector(".profile__title"); //имя профиля
-let profileText = document.querySelector(".profile__subtitle"); //текст профиля
-let popupName = document.querySelector(".popup__input_name"); //поле имени профиля в popup
-let popupText = document.querySelector(".popup__input_text"); //поле текст профиля в popup
-let popupCardLink = document.querySelector(".popup__input_link"); //находим поле ссылки в popup__card
-let popupCardTitle = document.querySelector(".popup__input_title"); //находим поле названия в popup__card
-//массив карточек 
-const initialCards = [
-    {
-        name: 'Чикаго',
-        link: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1113&q=80'
-    },
-    {
-        name: 'Джерси-Сити',
-        link: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1124&q=80'
-    },
-    {
-        name: 'Шанхай',
-        link: 'https://images.unsplash.com/photo-1465447142348-e9952c393450?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=968&q=80'
-    },
-    {
-        name: 'Дубай',
-        link: 'https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80'
-    },
-    {
-        name: 'Токио',
-        link: 'https://images.unsplash.com/photo-1465815367149-ca149851a3a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1133&q=80'
-    },
-    {
-        name: 'Гонконг',
-        link: 'https://images.unsplash.com/photo-1513622790541-eaa84d356909?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'
-    }
-];
+const profileName = document.querySelector(".profile__title"); //имя профиля
+const profileText = document.querySelector(".profile__subtitle"); //текст профиля
+const popupName = document.querySelector(".popup__input_name"); //поле имени профиля в popup
+const popupText = document.querySelector(".popup__input_text"); //поле текст профиля в popup
+const popupCardLink = document.querySelector(".popup__input_link"); //находим поле ссылки в popup__card
+const popupCardTitle = document.querySelector(".popup__input_title"); //находим поле названия в popup__card
 
 //функция открытия/закрытия popup  
 function open(elem) {
     elem.classList.toggle("popup_active");
     document.addEventListener('keydown', closePopupEsc);
-};
+}
 
 //функция закрытия popup одной кнопкой
 function closePopup (event) {
     if (event.target.closest('.popup__close-button')){
       event.target.closest('.popup').classList.toggle('popup_active');
-    }
-  };
+    };
+  }
 
 //функция закрытия popup если кликаем на оверлей
 popups.addEventListener('click', function (evt) {
@@ -74,6 +47,7 @@ function addCard(link, name) {
 
     elementImage.src = link; //вставляем ссылку из массива
     elementTitle.textContent = name; //вставляем текст из массива
+    elementImage.alt = name; //добавляем фото alt
 
     //функция лайка
     likeButton.addEventListener("click", function (evt) {
@@ -94,19 +68,23 @@ function addCard(link, name) {
     });
 
       return element;
-};
+}
 
 //проходим по массиву и вставляем карточки
 initialCards.forEach(({link, name}) => {elements.prepend(addCard(link, name))});
 
-//функция добавления новой карточки
-function addCardNew(e) {
-    e.preventDefault(); //отмена стандартного submit
-    const element = addCard(popupCardLink.value, popupCardTitle.value); //вставляем ссылку и название карточки
-    elements.prepend(element);
+//функция добавления новой карточки пользователем
+function updateCard () {
+ const element = addCard(popupCardLink.value, popupCardTitle.value); 
+ elements.prepend(element);
+}
 
-    open(popupCard);
-};
+//отправка формы добавления фото-карточки
+function handleCardFormSubmit (e) {
+  e.preventDefault();
+  updateCard();
+  open(popupCard);
+}
 
 //функция подставноки значений профиля в форму 
  function editFormProfile() {
@@ -114,16 +92,20 @@ function addCardNew(e) {
     popupText.value = profileText.textContent;
 
     open(popup);
-};
+}
 
-//функция изменения данных профиля
-function profile(e) {
-    e.preventDefault(); 
-    profileName.textContent = popupName.value;
-    profileText.textContent = popupText.value;
+//функция добавления данных имени и о себе в профиль из popup
+function updateProfile () {
+  profileName.textContent = popupName.value;
+  profileText.textContent = popupText.value;
+}
 
-    open(popup);
-};
+//функция отправки формы редактирования профиля
+ function handleProfileFormSubmit (e) {
+   e.preventDefault();
+   updateProfile();
+   open(popup);
+ }
 
 //функция закрытия popup клавишей Escape
 function closePopupEsc(evt) {
@@ -131,11 +113,11 @@ function closePopupEsc(evt) {
     document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
     document.removeEventListener('keydown', closePopupEsc);
   };
-};
+}
 
 editButton.addEventListener("click", editFormProfile);
 addButton.addEventListener("click", () => {open(popupCard)});
-form.addEventListener("submit", profile);
-formCard.addEventListener("submit", addCardNew);
+form.addEventListener("submit", handleProfileFormSubmit);
+formCard.addEventListener("submit", handleCardFormSubmit);
 popups.addEventListener("click", closePopup);
 document.addEventListener('keydown', closePopupEsc);
