@@ -19,40 +19,35 @@ let popupCardTitle = document.querySelector(".popup__input_title"); //наход
 //массив карточек 
 const initialCards = [
     {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+        name: 'Чикаго',
+        link: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1113&q=80'
     },
     {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Джерси-Сити',
+        link: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1124&q=80'
     },
     {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Шанхай',
+        link: 'https://images.unsplash.com/photo-1465447142348-e9952c393450?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=968&q=80'
     },
     {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+        name: 'Дубай',
+        link: 'https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80'
     },
     {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+        name: 'Токио',
+        link: 'https://images.unsplash.com/photo-1465815367149-ca149851a3a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1133&q=80'
     },
     {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+        name: 'Гонконг',
+        link: 'https://images.unsplash.com/photo-1513622790541-eaa84d356909?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80'
     }
 ];
-
-function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-      open(document.querySelector('.popup_active'));
-    };
-  };
 
 //функция открытия/закрытия popup  
 function open(elem) {
     elem.classList.toggle("popup_active");
+    document.addEventListener('keydown', closePopupEsc);
 };
 
 //функция закрытия popup одной кнопкой
@@ -63,8 +58,8 @@ function closePopup (event) {
   };
 
 //функция закрытия popup если кликаем на оверлей
-document.addEventListener('click', function (evt) {
-  evt.target.classList.toggle('popup_active');
+popups.addEventListener('click', function (evt) {
+  evt.target.classList.remove('popup_active');
   evt.stopPropagation();
 });
 
@@ -128,6 +123,14 @@ function profile(e) {
     profileText.textContent = popupText.value;
 
     open(popup);
+};
+
+//функция закрытия popup клавишей Escape
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
+    document.removeEventListener('keydown', closePopupEsc);
+  };
 };
 
 editButton.addEventListener("click", editFormProfile);
