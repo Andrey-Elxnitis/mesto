@@ -20,6 +20,7 @@ const popupCardTitle = document.querySelector(".popup__input_title"); //нахо
 //функция открытия/закрытия popup  
 function open(elem) {
     elem.classList.toggle("popup_active");
+    enableValidation(objSelector);
     document.addEventListener('keydown', closePopupEsc);
 }
 
