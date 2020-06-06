@@ -57,7 +57,7 @@ const setEventListener = (formElement) => {
             toggleButtonState(inputList, buttonElement);
         });
     });
-};
+}
 
 const enableValidation = (objSelector) => {
     //находим формы и делаем из них массив

@@ -28,7 +28,7 @@ function open(elem) {
 function closePopup (event) {
     if (event.target.closest('.popup__close-button')){
       event.target.closest('.popup').classList.toggle('popup_active');
-    };
+    }
   }
 
 //функция закрытия popup если кликаем на оверлей
@@ -75,7 +75,7 @@ function addCard(link, name) {
 initialCards.forEach(({link, name}) => {elements.prepend(addCard(link, name))});
 
 //функция добавления новой карточки пользователем
-function updateCard () {
+function createCard () {
  const element = addCard(popupCardLink.value, popupCardTitle.value); 
  elements.prepend(element);
 }
@@ -83,7 +83,7 @@ function updateCard () {
 //отправка формы добавления фото-карточки
 function handleCardFormSubmit (e) {
   e.preventDefault();
-  updateCard();
+  createCard();
   open(popupCard);
 }
 
@@ -113,7 +113,7 @@ function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
     document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
     document.removeEventListener('keydown', closePopupEsc);
-  };
+  }
 }
 
 editButton.addEventListener("click", editFormProfile);
