@@ -1,5 +1,3 @@
- // import { inputList, objSelector } from './index.js';
-
 export class FormValidator {
     constructor(objSelector, form) {
         this._form = form;

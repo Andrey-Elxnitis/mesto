@@ -21,9 +21,6 @@ const popupText = document.querySelector(".popup__input_text"); //поле те�
 const popupCardLink = document.querySelector(".popup__input_link"); //находим поле ссылки в popup__card
 const popupCardTitle = document.querySelector(".popup__input_title"); //находим поле названия в popup__card
 
-export const inputList = Array.from(document.querySelectorAll('.popup__input'));
-const formList = Array.from(document.querySelectorAll('.popup__container'));
-
 export const objSelector = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
@@ -33,23 +30,40 @@ export const objSelector = {
   errorClass: 'popup__error-message_active'
 };
 
+function inclusionValidation() {
+  //делаем массив форм
+  const formList = Array.from(document.querySelectorAll('.popup__container'));
+  formList.forEach((form) => {
+    const formValid = new FormValidator(objSelector, form);
+    formValid.enableValidation();
+  });
+}
+
+//функция удаления ошибок
+function deleteInputError(form, inputElement) {
+  const errorElement = form.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove('popup__input_type_error'); //убираем у инпута border
+    errorElement.classList.remove('popup__error-message_active'); //убираем текст активный класс
+    errorElement.textContent = ''; //обнуляем текст
+}
+
 //функция открытия/закрытия popup  
 export function open(elem) {
     elem.classList.toggle("popup_active");
     
     if (popup.classList.contains('popup_active')) {
-   //   setEventListener(popup);
+      inclusionValidation(popup);
       //удаление ошибок при повторном открытии формы профиля
-   //   hideInputError(popup, popupName);
-   //   hideInputError(popup, popupText);
+      deleteInputError(popup, popupName);
+      deleteInputError(popup, popupText);
     }
 
     if (popupCard.classList.contains('popup_active')) {
+      inclusionValidation(popupCard);
       //удаление ошибок при повторном открытии формы места
-   //   hideInputError(popupCard, popupCardTitle);
-    //  hideInputError(popupCard, popupCardLink);
+      deleteInputError(popupCard, popupCardTitle);
+      deleteInputError(popupCard, popupCardLink);
       discartingFieldsPopupcard();
-    //  setEventListener(popupCard);
     }
 
     document.addEventListener('keydown', closePopupEsc);
@@ -126,15 +140,6 @@ function closePopupEsc(evt) {
   }
 }
 
-function inclusionValidation() {
-  //делаем массив форм
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
-  formList.forEach((form) => {
-    const formValid = new FormValidator(objSelector, form);
-    formValid.enableValidation();
-  });
-}
-
 editButton.addEventListener("click", editFormProfile);
 addButton.addEventListener("click", () => {open(popupCard)});
 form.addEventListener("submit", handleProfileFormSubmit);
@@ -143,4 +148,3 @@ popups.addEventListener("click", closePopup);
 document.addEventListener('keydown', closePopupEsc);
 
 addCard();
-inclusionValidation(formList);
