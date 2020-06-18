@@ -8,7 +8,6 @@ export class Card {
     }
 
     //метод получения для карточки разметки
-    //elementTemplate экспортирован из index.js
     _getTemplate() {
         const element = document.querySelector(this._cardSelector)
         .content.querySelector('.element').cloneNode(true); //копируем заготовку
@@ -24,7 +23,6 @@ export class Card {
     //функция\метод удаления карточки
     _deleteCard() {
         this._element.remove();
-        //ПРОТЕСТИРОВАТЬ КАК РАБОТАЕТ!
     }
 
     //функция\метод открытия попапа фото карточки

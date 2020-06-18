@@ -47,6 +47,12 @@ function deleteInputError(form, inputElement) {
     errorElement.textContent = ''; //обнуляем текст
 }
 
+//функция сбрасывания полей попапа места при повторном открытии
+function discartingFieldsPopupcard () {
+  popupCardLink.value = '';
+  popupCardTitle.value = '';
+}
+
 //функция открытия/закрытия popup  
 export function open(elem) {
     elem.classList.toggle("popup_active");
@@ -68,13 +74,6 @@ export function open(elem) {
 
     document.addEventListener('keydown', closePopupEsc);
 }
-
-//функция сбрасывания полей попапа места при повторном открытии
-function discartingFieldsPopupcard () {
-  popupCardLink.value = '';
-  popupCardTitle.value = '';
-}
-
 
 //функция закрытия popup одной кнопкой
 function closePopup (event) {
