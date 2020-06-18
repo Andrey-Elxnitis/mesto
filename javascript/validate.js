@@ -1,12 +1,3 @@
-const objSelector = {
-    formSelector: '.popup__container',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error-message_active'
-  };
-
 //функция добавления ошибки
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -34,12 +25,15 @@ const checkInputValidity = (formElement, inputElement) => {
     }
 };
 
+
 //функция на вход принимает массив инпутов и кнопку отправить
 function toggleButtonState (inputList, buttonElement) {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add('popup__button_disabled');
+        buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove('popup__button_disabled');
+        buttonElement.disabled = false;
     }
 }
 
@@ -81,5 +75,3 @@ function hasInvalidInput (inputList) {
         return !inputElement.validity.valid;
     })
 }
-
-enableValidation(objSelector);
