@@ -17,7 +17,7 @@ export class FormValidator {
     }
 
     //метод удаление ошибки
-    _hideInputError(form, inputElement) {
+    hideInputError(form, inputElement) {
         const errorElement = form.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass); //убираем у инпута border
         errorElement.classList.remove(this._errorClass); //убираем текст активный класс
@@ -31,7 +31,7 @@ export class FormValidator {
             this._showInputError(form, inputElement, inputElement.validationMessage);
         } else {
             //если все впорядке, поле прошло проверку, то убираем ошибку
-            this._hideInputError(form, inputElement);
+            this.hideInputError(form, inputElement);
         }
     }
 

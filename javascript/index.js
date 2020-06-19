@@ -39,37 +39,31 @@ function inclusionValidation() {
   });
 }
 
-//функция удаления ошибок
-function deleteInputError(form, inputElement) {
-  const errorElement = form.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error'); //убираем у инпута border
-    errorElement.classList.remove('popup__error-message_active'); //убираем текст активный класс
-    errorElement.textContent = ''; //обнуляем текст
-}
-
 //функция сбрасывания полей попапа места при повторном открытии
 function discartingFieldsPopupcard () {
   popupCardLink.value = '';
   popupCardTitle.value = '';
 }
 
+const error = new FormValidator(objSelector, form); //экземпляр обьекта для удаления ошибок
+
 //функция открытия/закрытия popup  
 export function open(elem) {
     elem.classList.toggle("popup_active");
-    
+
     if (popup.classList.contains('popup_active')) {
       inclusionValidation(popup);
       //удаление ошибок при повторном открытии формы профиля
-      deleteInputError(popup, popupName);
-      deleteInputError(popup, popupText);
+      error.hideInputError(popup, popupName);
+      error.hideInputError(popup, popupText);
     }
 
     if (popupCard.classList.contains('popup_active')) {
-      inclusionValidation(popupCard);
       //удаление ошибок при повторном открытии формы места
-      deleteInputError(popupCard, popupCardTitle);
-      deleteInputError(popupCard, popupCardLink);
+      error.hideInputError(popupCard, popupCardTitle);
+      error.hideInputError(popupCard, popupCardLink);
       discartingFieldsPopupcard();
+      inclusionValidation(popupCard);
     }
 
     document.addEventListener('keydown', closePopupEsc);
