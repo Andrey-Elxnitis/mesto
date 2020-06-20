@@ -4,6 +4,11 @@ import { FormValidator } from './FormValidator.js';
 
 const editButton = document.querySelector(".profile__edit-button"); //кнопка открытия popup редактирования профиля
 const addButton = document.querySelector(".profile__add-button"); //кнопка открытия popup редактирования карточек
+const closeButtonProfile = document.querySelector('.popup__close-button_profile'); //кнопка закрытия попапа профиля
+const closeButtonCard = document.querySelector('.popup__close-button_card'); //кнопка закрытия попапа карточки
+const closeButtonPhoto = document.querySelector('.popup__close-button_photo'); //кнопка закрытия попапа фото
+const popupButtonSaveProfile = document.querySelector('.popup__button'); //кнопка сохранения данных в попапах
+const popupButtonSaveCard = document.querySelector('.popup__button_card');
 const popups = document.querySelector(".popups"); //общая секция popup для отслеживания клика
 const popup = document.querySelector(".popup_type_profile"); //popup
 const popupCard = document.querySelector(".popup_type_card"); //popup_card
@@ -30,14 +35,15 @@ export const objSelector = {
   errorClass: 'popup__error-message_active'
 };
 
-function inclusionValidation() {
-  //делаем массив форм
-  const formList = Array.from(document.querySelectorAll('.popup__container'));
-  formList.forEach((form) => {
-    const formValid = new FormValidator(objSelector, form);
-    formValid.enableValidation();
-  });
-}
+//включение валидации
+let formProfile = document.querySelector('.popup__container_ptofile');
+formProfile = new FormValidator(objSelector, form);
+formProfile.enableValidation();
+
+let formCardPopup = document.querySelector('.popup__container_card');
+formCardPopup = new FormValidator(objSelector, formCard);
+formCardPopup.enableValidation();
+
 
 //функция сбрасывания полей попапа места при повторном открытии
 function discartingFieldsPopupcard () {
@@ -45,71 +51,95 @@ function discartingFieldsPopupcard () {
   popupCardTitle.value = '';
 }
 
-const error = new FormValidator(objSelector, form); //экземпляр обьекта для удаления ошибок
+//функция закрытия popup клавишей Escape
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
+  }
+}
 
-//функция открытия/закрытия popup  
+//функция открытия popup  
 export function open(elem) {
-    elem.classList.toggle("popup_active");
+    elem.classList.add("popup_active");
 
     if (popup.classList.contains('popup_active')) {
-      inclusionValidation(popup);
       //удаление ошибок при повторном открытии формы профиля
-      error.hideInputError(popup, popupName);
-      error.hideInputError(popup, popupText);
+      formProfile.hideInputError(popup, popupName);
+      formProfile.hideInputError(popup, popupText);
     }
 
-    if (popupCard.classList.contains('popup_active')) {
+    else if (popupCard.classList.contains('popup_active')) {
       //удаление ошибок при повторном открытии формы места
-      error.hideInputError(popupCard, popupCardTitle);
-      error.hideInputError(popupCard, popupCardLink);
-      discartingFieldsPopupcard();
-      inclusionValidation(popupCard);
+      formCardPopup.hideInputError(popupCard, popupCardTitle);
+      formCardPopup.hideInputError(popupCard, popupCardLink);
     }
 
     document.addEventListener('keydown', closePopupEsc);
 }
 
-//функция закрытия popup одной кнопкой
-function closePopup (event) {
-    if (event.target.closest('.popup__close-button')) {
-      event.target.closest('.popup').classList.toggle('popup_active');
-    }
+//функции поставновки кнопки отправить в попапе в правильное положение при открытии
+function switchButton () {
+  if (popup.classList.contains('popup_active')) {
+    popupButtonSaveProfile.classList.remove(objSelector.inactiveButtonClass);
+    popupButtonSaveProfile.disabled = false;
   }
 
+   else if (popupCard.classList.contains('popup_active')) {
+    popupButtonSaveCard.classList.add(objSelector.inactiveButtonClass);
+    popupButtonSaveCard.disabled = true;
+  }
+}
+
+//функция закрытия попапа
+function close(elem) {
+  elem.classList.remove('popup_active');
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
 //функция закрытия popup если кликаем на оверлей
-popups.addEventListener('click', function (evt) {
+popups.addEventListener('mousedown', function (evt) {
+  if (evt.target.closest('.popups')) {
   evt.target.classList.remove('popup_active');
+  document.removeEventListener('keydown', closePopupEsc);
   evt.stopPropagation();
+  }
 });
 
-//функция добавления карточки на сайт из массива
-function addCard () {
+//функция добавления карточки в DOM
+function addCardSite (elements, card) {
+  elements.prepend(card);
+}
+
+//добавляем карточки из массива на сайт
+const addCard = () => {
   initialCards.forEach((item) => {
     const card = new Card(item.name, item.link, '#element-template');
     const cardElement = card.generateCard();
-    elements.prepend(cardElement);
+    //добавляем в DOM
+    addCardSite(elements, cardElement);
   });
 }
 
 //функция добавления новой карточки пользователем
-function createCard () {
+const createCard = () => {
   const card = new Card(popupCardTitle.value, popupCardLink.value, '#element-template');
   const cardElement = card.generateCard();
-  elements.prepend(cardElement);
+  //добавляем в DOM
+  addCardSite(elements, cardElement);
 }
 
 //отправка формы добавления фото-карточки
 function handleCardFormSubmit (e) {
   e.preventDefault();
   createCard();
-  open(popupCard);
+  close(popupCard);
 }
 
 //функция подставноки значений профиля в форму 
  function editFormProfile() {
+  open(popup);
     popupName.value = profileName.textContent;
     popupText.value = profileText.textContent;
-    open(popup);
 }
 
 //функция добавления данных имени и о себе в профиль из popup
@@ -122,22 +152,15 @@ function updateProfile () {
  function handleProfileFormSubmit (e) {
    e.preventDefault();
    updateProfile();
-   open(popup);
+   close(popup);
  }
 
-//функция закрытия popup клавишей Escape
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
-    document.removeEventListener('keydown', closePopupEsc);
-  }
-}
-
-editButton.addEventListener("click", editFormProfile);
-addButton.addEventListener("click", () => {open(popupCard)});
+editButton.addEventListener("click", () => {editFormProfile(); switchButton()});
+addButton.addEventListener("click", () => {open(popupCard); discartingFieldsPopupcard(); switchButton()});
+closeButtonProfile.addEventListener('click', () => {close(popup)});
+closeButtonCard.addEventListener('click', () => {close(popupCard)});
+closeButtonPhoto.addEventListener('click', () => {close(popupPhoto)});
 form.addEventListener("submit", handleProfileFormSubmit);
 formCard.addEventListener("submit", handleCardFormSubmit);
-popups.addEventListener("click", closePopup);
-document.addEventListener('keydown', closePopupEsc);
 
 addCard();

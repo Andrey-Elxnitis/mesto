@@ -12,6 +12,7 @@
     background-image: url(../../../images/Edit-Button.png);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .profile__edit-button:hover {

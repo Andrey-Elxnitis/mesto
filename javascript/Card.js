@@ -23,6 +23,7 @@ export class Card {
     //функция\метод удаления карточки
     _deleteCard() {
         this._element.remove();
+        this._element = null;
     }
 
     //функция\метод открытия попапа фото карточки

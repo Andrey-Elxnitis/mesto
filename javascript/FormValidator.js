@@ -54,18 +54,18 @@ export class FormValidator {
       });
     }
 
-    //метод добавления слушаетелей
-    _setEventListener(form) {
+    //метод добавления слушателей
+    _setEventListener() {
         //находим поля формы и делаем из них массив
-        const inputList = Array.from(form.querySelectorAll(this._inputSelector));
+        const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
         //находим кнопку отправки данных
-        const buttonElement = form.querySelector(this._submitButtonSelector);
+        const buttonElement = this._form.querySelector(this._submitButtonSelector);
         this._toggleButtonState(inputList, buttonElement);
         //проходим по всем инпутам
         inputList.forEach((inputElement) => {
         //вешаем инпутам обработчики
         inputElement.addEventListener('input', () => {
-            this._checkInputValidity(form, inputElement);
+            this._checkInputValidity(this._form, inputElement);
             this._toggleButtonState(inputList, buttonElement);
         });
       });

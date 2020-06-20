@@ -11,6 +11,7 @@
     background-image: url(../../../images/Close-Icon.png);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .popup__close-button:hover {

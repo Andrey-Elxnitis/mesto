@@ -12,6 +12,7 @@
     background-image: url(../../../images/Vector.png);
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .profile__add-button:hover {
