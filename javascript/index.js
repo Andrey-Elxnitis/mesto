@@ -35,13 +35,11 @@ export const objSelector = {
   errorClass: 'popup__error-message_active'
 };
 
-//включение валидации
-let formProfile = document.querySelector('.popup__container_ptofile');
-formProfile = new FormValidator(objSelector, form);
+//включение валидации для формы профиля
+const formProfile = new FormValidator(objSelector, form);
 formProfile.enableValidation();
-
-let formCardPopup = document.querySelector('.popup__container_card');
-formCardPopup = new FormValidator(objSelector, formCard);
+//включение валидации для формы карточек
+const formCardPopup = new FormValidator(objSelector, formCard);
 formCardPopup.enableValidation();
 
 
@@ -54,13 +52,15 @@ function discartingFieldsPopupcard () {
 //функция закрытия popup клавишей Escape
 function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
-    document.querySelector('.popup_active').classList.remove('popup_active'); //ещем класс, если он есть, то удаляем его
+    document.querySelector('.popup_active').classList.remove('popup_active'); //ищем класс, если он есть, то удаляем его
+    document.removeEventListener('keydown', closePopupEsc);
   }
 }
 
 //функция открытия popup  
 export function open(elem) {
     elem.classList.add("popup_active");
+    document.addEventListener('keydown', closePopupEsc);
 
     if (popup.classList.contains('popup_active')) {
       //удаление ошибок при повторном открытии формы профиля
@@ -73,8 +73,6 @@ export function open(elem) {
       formCardPopup.hideInputError(popupCard, popupCardTitle);
       formCardPopup.hideInputError(popupCard, popupCardLink);
     }
-
-    document.addEventListener('keydown', closePopupEsc);
 }
 
 //функции поставновки кнопки отправить в попапе в правильное положение при открытии
@@ -95,15 +93,6 @@ function close(elem) {
   elem.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupEsc);
 }
-
-//функция закрытия popup если кликаем на оверлей
-popups.addEventListener('mousedown', function (evt) {
-  if (evt.target.closest('.popups')) {
-  evt.target.classList.remove('popup_active');
-  document.removeEventListener('keydown', closePopupEsc);
-  evt.stopPropagation();
-  }
-});
 
 //функция добавления карточки в DOM
 function addCardSite (elements, card) {
@@ -154,6 +143,15 @@ function updateProfile () {
    updateProfile();
    close(popup);
  }
+
+//функция закрытия popup если кликаем на оверлей
+popups.addEventListener('mousedown', function (evt) {
+
+  if (evt.target.classList.contains('popup')) {
+  close(document.querySelector('.popup_active'));
+  evt.stopPropagation();
+  } 
+});
 
 editButton.addEventListener("click", () => {editFormProfile(); switchButton()});
 addButton.addEventListener("click", () => {open(popupCard); discartingFieldsPopupcard(); switchButton()});
