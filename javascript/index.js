@@ -49,30 +49,16 @@ function discartingFieldsPopupcard () {
   popupCardTitle.value = '';
 }
 
-//функция закрытия popup клавишей Escape
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    document.querySelector('.popup_active').classList.remove('popup_active'); //ищем класс, если он есть, то удаляем его
-    document.removeEventListener('keydown', closePopupEsc);
-  }
-}
-
 //функция открытия popup  
 export function open(elem) {
-    elem.classList.add("popup_active");
-    document.addEventListener('keydown', closePopupEsc);
+  elem.classList.add("popup_active");
+  document.addEventListener('keydown', closePopupEsc);
+}
 
-    if (popup.classList.contains('popup_active')) {
-      //удаление ошибок при повторном открытии формы профиля
-      formProfile.hideInputError(popup, popupName);
-      formProfile.hideInputError(popup, popupText);
-    }
-
-    else if (popupCard.classList.contains('popup_active')) {
-      //удаление ошибок при повторном открытии формы места
-      formCardPopup.hideInputError(popupCard, popupCardTitle);
-      formCardPopup.hideInputError(popupCard, popupCardLink);
-    }
+//функция удаления ошибок при повторном открытии формы карточки
+function deleteErrorCard() {
+  formCardPopup.hideInputError(popupCard, popupCardTitle);
+  formCardPopup.hideInputError(popupCard, popupCardLink);
 }
 
 //функции поставновки кнопки отправить в попапе в правильное положение при открытии
@@ -92,6 +78,13 @@ function switchButton () {
 function close(elem) {
   elem.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupEsc);
+}
+
+//функция закрытия popup клавишей Escape
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    close(document.querySelector('.popup_active'));
+  }
 }
 
 //функция добавления карточки в DOM
@@ -127,8 +120,11 @@ function handleCardFormSubmit (e) {
 //функция подставноки значений профиля в форму 
  function editFormProfile() {
   open(popup);
-    popupName.value = profileName.textContent;
-    popupText.value = profileText.textContent;
+  popupName.value = profileName.textContent;
+  popupText.value = profileText.textContent;
+  //удаление ошибок при повторном открытии формы
+  formProfile.hideInputError(popup, popupName);
+  formProfile.hideInputError(popup, popupText);
 }
 
 //функция добавления данных имени и о себе в профиль из popup
@@ -154,7 +150,7 @@ popups.addEventListener('mousedown', function (evt) {
 });
 
 editButton.addEventListener("click", () => {editFormProfile(); switchButton()});
-addButton.addEventListener("click", () => {open(popupCard); discartingFieldsPopupcard(); switchButton()});
+addButton.addEventListener("click", () => {open(popupCard); discartingFieldsPopupcard(); switchButton(); deleteErrorCard()});
 closeButtonProfile.addEventListener('click', () => {close(popup)});
 closeButtonCard.addEventListener('click', () => {close(popupCard)});
 closeButtonPhoto.addEventListener('click', () => {close(popupPhoto)});
