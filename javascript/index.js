@@ -1,6 +1,7 @@
 import { Card } from './Card.js';
 import { initialCards } from './initialCards.js';
 import { FormValidator } from './FormValidator.js';
+import { open, popupPhoto, close } from './utils.js';
 
 const editButton = document.querySelector(".profile__edit-button"); //кнопка открытия popup редактирования профиля
 const addButton = document.querySelector(".profile__add-button"); //кнопка открытия popup редактирования карточек
@@ -12,13 +13,9 @@ const popupButtonSaveCard = document.querySelector('.popup__button_card');
 const popups = document.querySelector(".popups"); //общая секция popup для отслеживания клика
 const popup = document.querySelector(".popup_type_profile"); //popup
 const popupCard = document.querySelector(".popup_type_card"); //popup_card
-export const popupPhoto = document.querySelector(".popup_type_photo"); //popup_photo
-export const popupImage = document.querySelector(".popup__card-image"); //поле для фото popup-photo
-export const popupNamePhoto = document.querySelector(".popup__card-name"); //поле названия фото popup-photo
 const form = document.querySelector(".popup__container_profile"); //форма профиля
 const formCard = document.querySelector(".popup__container_card"); //форма карточек
 const elements = document.querySelector(".elements"); //контейнер для карточек
-export const elementTemplate = document.querySelector("#element-template").content; //находим заготовку
 const profileName = document.querySelector(".profile__title"); //имя профиля
 const profileText = document.querySelector(".profile__subtitle"); //текст профиля
 const popupName = document.querySelector(".popup__input_name"); //поле имени профиля в popup
@@ -42,17 +39,10 @@ formProfile.enableValidation();
 const formCardPopup = new FormValidator(objSelector, formCard);
 formCardPopup.enableValidation();
 
-
 //функция сбрасывания полей попапа места при повторном открытии
 function discartingFieldsPopupcard () {
   popupCardLink.value = '';
   popupCardTitle.value = '';
-}
-
-//функция открытия popup  
-export function open(elem) {
-  elem.classList.add("popup_active");
-  document.addEventListener('keydown', closePopupEsc);
 }
 
 //функция удаления ошибок при повторном открытии формы карточки
@@ -71,19 +61,6 @@ function switchButton () {
    else if (popupCard.classList.contains('popup_active')) {
     popupButtonSaveCard.classList.add(objSelector.inactiveButtonClass);
     popupButtonSaveCard.disabled = true;
-  }
-}
-
-//функция закрытия попапа
-function close(elem) {
-  elem.classList.remove('popup_active');
-  document.removeEventListener('keydown', closePopupEsc);
-}
-
-//функция закрытия popup клавишей Escape
-function closePopupEsc(evt) {
-  if (evt.key === 'Escape') {
-    close(document.querySelector('.popup_active'));
   }
 }
 
