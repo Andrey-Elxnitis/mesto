@@ -1,9 +1,8 @@
-import { open, popupPhoto, popupImage, popupNamePhoto } from './utils.js';
-
 export class Card {
-    constructor(name, link, cardSelector) {
-        this._name = name;
-        this._link = link;
+    constructor(cardSelector, { initialCards, handleCardClick }) {
+        this._name = initialCards.name;
+        this._link = initialCards.link;
+        this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
     }
 
@@ -26,12 +25,13 @@ export class Card {
         this._element = null;
     }
 
+    /*
     //функция\метод открытия попапа фото карточки
     _popup() {
         popupImage.src = this._link;
         popupNamePhoto.textContent = this._name;
         open(popupPhoto);
-    }
+    } */
 
     //метод установки слушателей
     _setEventListener() {
@@ -47,7 +47,7 @@ export class Card {
 
         //установили слушатель открытия попапа фото карточки
         this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._popup();
+            this._handleCardClick();
         });
     }
 
