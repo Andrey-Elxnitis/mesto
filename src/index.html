@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body>
   <div class="page">
@@ -13,7 +12,7 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/logo-profile.jpg" alt="изображение">
+        <img class="profile__avatar" src="../src/images/logo-profile.jpg" alt="изображение">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button type="button" class="profile__edit-button"></button>
@@ -29,7 +28,7 @@
     </footer>
     <template id="element-template">
     <div class="element">
-      <img class="element__image" src="" alt="изображение">
+      <img class="element__image" alt="изображение">
       <button class="element__delete" type="button"></button>
       <div class="element__text">
         <h2 class="element__title"></h2>
@@ -67,12 +66,11 @@
     <div class="popup popup_type_photo">
       <div class="popup__card">
         <button type="button" class="popup__close-button popup__close-button_photo"></button>
-        <img class="popup__card-image" src="" alt="">
+        <img class="popup__card-image" alt="">
         <p class="popup__card-name"></p>
       </div>
     </div>
     </section>
   </div>
-  <script type="module" src="./javascript/index.js"></script>
 </body>
 </html>

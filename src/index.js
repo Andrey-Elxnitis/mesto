@@ -1,14 +1,16 @@
-import { Card } from '../components/Card.js';
-import { initialCards } from '../components/initialCards.js';
-import { FormValidator } from '../components/FormValidator.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
-import { UserInfo } from '../components/UserInfo.js';
-import { Section } from '../components/Section.js';
+import './pages/index.css'
+
+import { Card } from './components/Card.js';
+import { initialCards } from './components/initialCards.js';
+import { FormValidator } from './components/FormValidator.js';
+import { PopupWithForm } from './components/PopupWithForm.js';
+import { PopupWithImage } from './components/PopupWithImage.js';
+import { UserInfo } from './components/UserInfo.js';
+import { Section } from './components/Section.js';
 import { 
   popupPhoto, editButton, addButton, popupButtonSaveProfile, popupButtonSaveCard, popup,
   popupCard, form, formCard, elements, profileName, profileText, popupName, popupText,
-  popupCardLink, popupCardTitle, objSelector } from '../utils/constans.js';
+  popupCardLink, popupCardTitle, objSelector } from './utils/constans.js';
 
 
 const userFormProfile = {

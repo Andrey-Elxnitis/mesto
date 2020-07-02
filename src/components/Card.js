@@ -25,14 +25,6 @@ export class Card {
         this._element = null;
     }
 
-    /*
-    //функция\метод открытия попапа фото карточки
-    _popup() {
-        popupImage.src = this._link;
-        popupNamePhoto.textContent = this._name;
-        open(popupPhoto);
-    } */
-
     //метод установки слушателей
     _setEventListener() {
         //установили слушатель на лайк
