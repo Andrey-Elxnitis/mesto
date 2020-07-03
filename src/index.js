@@ -36,8 +36,10 @@ function openProfileForm() {
   popupName.value = profile.name;
   popupText.value = profile.text;
   profileForm.open();
-  profileForm.setEventListeners();
 }
+
+//добавляю слушатели форме профиля
+profileForm.setEventListeners();
 
 //экземпляр класса для попапа фото
 const popupPhotoCard = new PopupWithImage(popupPhoto);
@@ -48,7 +50,6 @@ const cardSheet = new Section({
       const card = new Card('#element-template', {
           initialCards: item, handleCardClick: () => {
               popupPhotoCard.open(item);
-              popupPhotoCard.setEventListeners();
           }
       });
       const cardElement = card.generateCard();
@@ -64,7 +65,6 @@ const cardForm = new PopupWithForm(popupCard, {
     const card = new Card('#element-template', {
       initialCards: item, handleCardClick: () => {
         popupPhotoCard.open(item);
-        popupPhotoCard.setEventListeners();
       }
     });
 
@@ -74,11 +74,16 @@ const cardForm = new PopupWithForm(popupCard, {
   }
 });
 
+//добавляю слушатели попапу фото
+popupPhotoCard.setEventListeners();
+
 //открываем попап добавления карточки
 const openCardForm = () => {
   cardForm.open();
-  cardForm.setEventListeners();
 }
+
+//добавляю слушатели на попап карточки
+cardForm.setEventListeners();
 
 //включение валидации для формы профиля
 const formProfile = new FormValidator(objSelector, form);
