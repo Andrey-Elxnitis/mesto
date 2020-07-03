@@ -20,7 +20,7 @@ export class FormValidator {
     hideInputError(form, inputElement) {
         const errorElement = form.querySelector(`#${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass); //убираем у инпута border
-        errorElement.classList.remove(this._errorClass); //убираем текст активный класс
+        errorElement.classList.remove(this._errorClass); //убираем тексту активный класс
         errorElement.textContent = ''; //обнуляем текст
     }
 
@@ -36,7 +36,7 @@ export class FormValidator {
     }
 
     //метод переключения кнопки
-    _toggleButtonState(inputList, buttonElement) {
+    toggleButtonState(inputList, buttonElement) {
         if (this._hasInvalidInput(inputList)) {
             buttonElement.classList.add(this._inactiveButtonClass);
             buttonElement.disabled = true;
@@ -48,7 +48,7 @@ export class FormValidator {
 
     _hasInvalidInput(inputList) {
         //проходим по ним методом some
-    return inputList.some((inputElement) => {
+        return inputList.some((inputElement) => {
 
         return !inputElement.validity.valid;
       });
@@ -60,17 +60,17 @@ export class FormValidator {
         const inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
         //находим кнопку отправки данных
         const buttonElement = this._form.querySelector(this._submitButtonSelector);
-        this._toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState(inputList, buttonElement);
         //проходим по всем инпутам
         inputList.forEach((inputElement) => {
         //вешаем инпутам обработчики
         inputElement.addEventListener('input', () => {
             this._checkInputValidity(this._form, inputElement);
-            this._toggleButtonState(inputList, buttonElement);
+            this.toggleButtonState(inputList, buttonElement);
         });
       });
     }
-
+    
     //публичный метод включение валидации для формы
     enableValidation() {
         this._setEventListener(this._form);

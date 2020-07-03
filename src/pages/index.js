@@ -1,17 +1,24 @@
-import './pages/index.css'
+import './index.css';
 
-import { Card } from './components/Card.js';
-import { initialCards } from './components/initialCards.js';
-import { FormValidator } from './components/FormValidator.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { PopupWithImage } from './components/PopupWithImage.js';
-import { UserInfo } from './components/UserInfo.js';
-import { Section } from './components/Section.js';
+import { Card } from '../components/Card.js';
+import { initialCards } from '../utils/constans.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { Section } from '../components/Section.js';
 import { 
   popupPhoto, editButton, addButton, popupButtonSaveProfile, popupButtonSaveCard, popup,
-  popupCard, form, formCard, elements, profileName, profileText, popupName, popupText,
-  popupCardLink, popupCardTitle, objSelector } from './utils/constans.js';
+  popupCard, form, formCard, elements, objSelector, inputListProfile, inputListCard } from '../utils/constans.js';
 
+const popupImage = document.querySelector(".popup__card-image"); //поле для фото popup-photo
+const popupNamePhoto = document.querySelector(".popup__card-name"); //поле названия фото popup-photo
+const profileName = document.querySelector(".profile__title"); //имя профиля
+const profileText = document.querySelector(".profile__subtitle"); //текст профиля
+const popupName = document.querySelector(".popup__input_name"); //поле имени профиля в popup
+const popupText = document.querySelector(".popup__input_text"); //поле текст профиля в popup
+const popupCardLink = document.querySelector(".popup__input_link"); //находим поле ссылки в popup__card
+const popupCardTitle = document.querySelector(".popup__input_title"); //находим поле названия в popup__card
 
 const userFormProfile = {
   name: profileName,
@@ -42,7 +49,7 @@ function openProfileForm() {
 profileForm.setEventListeners();
 
 //экземпляр класса для попапа фото
-const popupPhotoCard = new PopupWithImage(popupPhoto);
+const popupPhotoCard = new PopupWithImage(popupPhoto, popupImage, popupNamePhoto);
 
 //добавляем карточки на сайт из массива
 const cardSheet = new Section({
@@ -100,31 +107,5 @@ function discartingFieldsPopupcard () {
   popupCardTitle.value = '';
 }
 
-//функция удаления ошибок при повторном открытии формы карточки
-function deleteErrorCard() {
-  formCardPopup.hideInputError(popupCard, popupCardTitle);
-  formCardPopup.hideInputError(popupCard, popupCardLink);
-}
-
-//функция удаления ошибок при повторном открытии формы профиля
-function deleteErrorProfile() {
-  formProfile.hideInputError(popup, popupName);
-  formProfile.hideInputError(popup, popupText);
-}
-
-//функции поставновки кнопки отправить в попапе в правильное положение при открытии
-function switchButton () {
-  if (popup.classList.contains('popup_active')) {
-    popupButtonSaveProfile.classList.remove(objSelector.inactiveButtonClass);
-    popupButtonSaveProfile.disabled = false;
-  }
-
-   else if (popupCard.classList.contains('popup_active')) {
-    popupButtonSaveCard.classList.add(objSelector.inactiveButtonClass);
-    popupButtonSaveCard.disabled = true;
-  }
-}
-
-
-editButton.addEventListener('click', () => {openProfileForm(); switchButton(); deleteErrorProfile()});
-addButton.addEventListener("click", () => {openCardForm(); discartingFieldsPopupcard(); switchButton(); deleteErrorCard()});
+editButton.addEventListener('click', () => {openProfileForm(); formProfile.toggleButtonState(inputListProfile, popupButtonSaveProfile); formProfile.hideInputError(popup, popupName); formProfile.hideInputError(popup, popupText);});
+addButton.addEventListener("click", () => {openCardForm(); discartingFieldsPopupcard(); formCardPopup.toggleButtonState(inputListCard, popupButtonSaveCard)});

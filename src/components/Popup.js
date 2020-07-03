@@ -1,15 +1,14 @@
-import { popups } from '../utils/constans.js';
-
 export class Popup {
-    constructor(popup) {
-        this._popup = popup;
+    constructor(popupSelector) {
+        this._popup = popupSelector;
+        this._handleEscClose = this._handleEscClose.bind(this);
+        this._handleOverlayClose = this._handleOverlayClose.bind(this);
     }
 
     
     //метод закрытия попапа кнопкой Esc
     _handleEscClose(evt) {
         if (evt.key === 'Escape') {
-           // document.querySelector('.popup').classList.remove('popup_active');
            this.close();
           }
     } 
@@ -24,21 +23,16 @@ export class Popup {
     //метод открытия попапа
     open() {
         this._popup.classList.add('popup_active');
-        document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
-        popups.addEventListener('mousedown', (evt) => this._handleOverlayClose(evt));
+        document.addEventListener('keydown', this._handleEscClose);
+        document.addEventListener('mousedown', this._handleOverlayClose);
     }
 
     
     //метод закрытия попапа
     close() {
-
-        if (!document.querySelector('.popup_active')) {
-            return undefined;
-        }
-    
         this._popup.classList.remove('popup_active');
-        document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
-        popups.removeEventListener('mousedown', (evt) => this._handleOverlayClose(evt));
+        document.removeEventListener('keydown', this._handleEscClose);
+        document.removeEventListener('mousedown', this._handleOverlayClose);
     }
 
     setEventListeners() {
