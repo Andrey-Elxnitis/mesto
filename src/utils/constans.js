@@ -38,6 +38,8 @@ export const formCard = document.querySelector(".popup__container_card"); //фо
 export const elements = document.querySelector(".elements"); //контейнер для карточек
 export const inputListProfile = Array.from(popup.querySelectorAll('.popup__input')); //массив инпутов формы профиля
 export const inputListCard = Array.from(popupCard.querySelectorAll('.popup__input')); //массив инпутов формы карточек
+export const apiUrl = 'https://mesto.nomoreparties.co/v1/cohort-13';
+export const headers = 'e66cf1b3-dadb-44df-be8a-bb3ba2569396';
 
 export const objSelector = {
   formSelector: '.popup__container',

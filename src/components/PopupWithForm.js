@@ -7,7 +7,7 @@ export class PopupWithForm extends Popup {
     }
     
     //метод собирает все поля формы
-    _getInputValues() {
+    getInputValues() {
         this._inputList = this._popup.querySelectorAll('.popup__input');
         this._formValue = {};
         this._inputList.forEach(item => {
@@ -21,7 +21,7 @@ export class PopupWithForm extends Popup {
     _sendingForm(evt) {
         //отменяем стандартную отправку
         evt.preventDefault();
-        this._submitForm(this._getInputValues());
+        this._submitForm(this.getInputValues());
     }
 
     //метод закрытия формы

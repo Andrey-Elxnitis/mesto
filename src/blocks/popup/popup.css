@@ -8,6 +8,7 @@
 @import url(./__error/popup__error-message.css);
 @import url(./__error/_active/popup__error-message_active.css);
 @import url(./__button/popup__button.css);
+@import url(./__button/_delete/popup__button_delete.css);
 @import url(./__card/popup__card.css);
 @import url(./__card-image/popup__card-image.css);
 @import url(./__card-name/popup__card-name.css);
