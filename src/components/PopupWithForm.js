@@ -29,6 +29,16 @@ export class PopupWithForm extends Popup {
         super.close();
     }
 
+    //метод отображения загрузки при отправке данных на сервер
+    sendingLoading(isLoading) {
+        if (isLoading) {
+            document.querySelector('.popup__button_loading').textContent = `Сохранение...`;
+        }
+        else if (!isLoading) {
+            document.querySelector('.popup__button_loading').textContent = `Сохранить`;
+        }
+    }
+
     //вешаем слушатели
     setEventListeners() {
         this._submit = this._sendingForm.bind(this);

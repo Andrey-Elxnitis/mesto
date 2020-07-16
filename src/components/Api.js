@@ -17,6 +17,34 @@ export class Api {
         })
     }
 
+    //метод запроса информации о пользователе с сервера
+    getUserInfo() {
+        return this._sendRequest(`/users/me`, {
+            headers: this.headers
+        })
+    }
+
+    //метод отправки новой информации пользователя на сервер
+    sendUserInfo(newUserInfo) {
+        return this._sendRequest(`/users/me`, {
+            method: 'PATCH',
+            headers: this.headers,
+            body: JSON.stringify({
+                name: newUserInfo.nameProfile,
+                about: newUserInfo.textProfile
+            })
+        })
+    }
+
+    //метод обновления аватара
+    sendUserAvatar(avatar) {
+        console.log(avatar)
+        return this._sendRequest(`/users/me/avatar`, {
+            method: 'PATCH',
+            body: JSON.stringify({ avatar: avatar.avatar }),
+            headers: this.headers
+        })
+    }
 
     //метод запроса карточек с сервера
     getCards() {
@@ -47,8 +75,16 @@ export class Api {
     }
 
     //метод удаления лайка
-    disLike(id) {
+    deleteLike(id) {
         return this._sendRequest(`/cards/likes/${id}`, {
+            method: 'DELETE',
+            headers: this.headers
+        })
+    }
+
+    //метод удаления карточки
+    deleteCard(id) {
+        return this._sendRequest(`/cards/${id}`, {
             method: 'DELETE',
             headers: this.headers
         })

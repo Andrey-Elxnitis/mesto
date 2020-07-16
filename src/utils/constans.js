@@ -28,13 +28,17 @@ export const initialCards = [
 
 export const editButton = document.querySelector(".profile__edit-button"); //кнопка открытия popup редактирования профиля
 export const addButton = document.querySelector(".profile__add-button"); //кнопка открытия popup редактирования карточек
+export const editButtonAvatar = document.querySelector('.profile__avatar-edit'); //кнопка открытия попапа изменения профиля
 export const popupPhoto = document.querySelector(".popup_type_photo"); //popup_photo
 export const popupButtonSaveProfile = document.querySelector('.popup__button'); //кнопка сохранения данных в попапах
 export const popupButtonSaveCard = document.querySelector('.popup__button_card');
 export const popup = document.querySelector(".popup_type_profile"); //popup
 export const popupCard = document.querySelector(".popup_type_card"); //popup_card
+export const popupDelete = document.querySelector('.popup_delete_card'); //попап удаления карточки
+export const popupAvatar = document.querySelector('.popup_avatar'); //попап обновления аватара профиля
 export const form = document.querySelector(".popup__container_profile"); //форма профиля
 export const formCard = document.querySelector(".popup__container_card"); //форма карточек
+export const formAvatar = document.querySelector('.popup__container_avatar'); //форма аватара
 export const elements = document.querySelector(".elements"); //контейнер для карточек
 export const inputListProfile = Array.from(popup.querySelectorAll('.popup__input')); //массив инпутов формы профиля
 export const inputListCard = Array.from(popupCard.querySelectorAll('.popup__input')); //массив инпутов формы карточек

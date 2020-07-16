@@ -1,12 +1,14 @@
 export class Card {
-    constructor(data, api, { cardSelector, handleCardClick }) {
+    constructor(data, api, { cardSelector, handleCardClick, deleteCards }) {
         this._name = data.name;
         this._link = data.link;
         this._id = data._id;
         this._likes = data.likes;
+        this._owner = data.owner;
         this._api = api;
         this._handleCardClick = handleCardClick;
         this._cardSelector = cardSelector;
+        this._deleteCard = deleteCards;
     }
 
     //метод получения для карточки разметки
@@ -21,12 +23,12 @@ export class Card {
         this._element.querySelector('.element__like')
         .classList.toggle('element__like_active');
     }
-
+/*
     //функция\метод удаления карточки
     _deleteCard() {
         this._element.remove();
         this._element = null;
-    }
+    } */
 
     //метод отображения количества лайков у карточки
     _showlike() {
@@ -39,16 +41,16 @@ export class Card {
                 like.classList.add('element__like_active');
                 likeCounter.textContent = `${data.likes.length}`;
             })
-            .cath((err) => {
+            .catch((err) => {
                 console.log(err);
             })
         } else {
-            this._api.disLike(this._id)
+            this._api.deleteLike(this._id)
             .then((data) => {
                 like.classList.remove('element__like_active');
                 likeCounter.textContent = `${data.likes.length}`;
             })
-            .cath((err) => {
+            .catch((err) => {
                 console.log(err);
             })
         }
@@ -73,7 +75,7 @@ export class Card {
     }
 
     //функция\метод создания карточки
-    generateCard() {
+    generateCard(userData) {
         this._element = this._getTemplate(); //записываем разметку
         this._setEventListener(); //добавляем карточкам слушатели
 
@@ -83,6 +85,14 @@ export class Card {
         this._element.querySelector('.element__title').textContent = this._name;
         this._element.id = this._id;
         this._element.querySelector('.element__like-counter').textContent = `${this._likes.length}`;
+
+        if (this._likes.find((like) => like._id === userData._id)) {
+            this._element.querySelector('.element__like').classList.add('element__like_active');
+        }
+        
+        if (userData._id === this._owner._id) {
+            this._element.querySelector('.element__delete').style.display = 'block';
+        }
 
         //возвращаяем готовую карточку
         return this._element;
