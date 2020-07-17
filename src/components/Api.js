@@ -38,7 +38,6 @@ export class Api {
 
     //метод обновления аватара
     sendUserAvatar(avatar) {
-        console.log(avatar)
         return this._sendRequest(`/users/me/avatar`, {
             method: 'PATCH',
             body: JSON.stringify({ avatar: avatar.avatar }),

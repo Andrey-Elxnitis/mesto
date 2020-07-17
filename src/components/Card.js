@@ -18,17 +18,11 @@ export class Card {
         return element;
     }
 
-    //функция\метод лайка
+    //метод лайка
     _likeCard() {
         this._element.querySelector('.element__like')
         .classList.toggle('element__like_active');
     }
-/*
-    //функция\метод удаления карточки
-    _deleteCard() {
-        this._element.remove();
-        this._element = null;
-    } */
 
     //метод отображения количества лайков у карточки
     _showlike() {
@@ -59,13 +53,12 @@ export class Card {
     _setEventListener() {
         //установили слушатель на лайк
         this._element.querySelector('.element__like').addEventListener('click', () => {
-           // this._likeCard();
            this._showlike();
         });
 
         //установили слушатель удаления карточки
-        this._element.querySelector('.element__delete').addEventListener('click', () => {
-            this._deleteCard();
+        this._element.querySelector('.element__delete').addEventListener('click', (e) => {
+            this._deleteCard(e);
         });
 
         //установили слушатель открытия попапа фото карточки
@@ -74,8 +67,8 @@ export class Card {
         });
     }
 
-    //функция\метод создания карточки
-    generateCard(userData) {
+    //метод создания карточки
+    generateCard() {
         this._element = this._getTemplate(); //записываем разметку
         this._setEventListener(); //добавляем карточкам слушатели
 
@@ -86,15 +79,15 @@ export class Card {
         this._element.id = this._id;
         this._element.querySelector('.element__like-counter').textContent = `${this._likes.length}`;
 
-        if (this._likes.find((like) => like._id === userData._id)) {
+        if (this._likes.find((like) => like._id === "1ac65b3ecac6ba4fa325e8e9")) {
             this._element.querySelector('.element__like').classList.add('element__like_active');
         }
         
-        if (userData._id === this._owner._id) {
+        if (this._owner._id === "1ac65b3ecac6ba4fa325e8e9") {
             this._element.querySelector('.element__delete').style.display = 'block';
         }
 
-        //возвращаяем готовую карточку
+        //возвращаем готовую карточку
         return this._element;
     }
 }

@@ -4,6 +4,8 @@ export class PopupWithForm extends Popup {
     constructor(popup, { submitForm }) {
         super(popup);
         this._submitForm = submitForm;
+        this._submitButton = this._popup.querySelector('.popup__button');
+        this._buttonText = this._submitButton.textContent;
     }
     
     //метод собирает все поля формы
@@ -32,10 +34,15 @@ export class PopupWithForm extends Popup {
     //метод отображения загрузки при отправке данных на сервер
     sendingLoading(isLoading) {
         if (isLoading) {
-            document.querySelector('.popup__button_loading').textContent = `Сохранение...`;
+           // document.querySelector('.popup__button_loading').textContent = `Сохранение...`;
+           this._submitButton.classList.add('popup__button_loading');
+           this._submitButton.textContent = 'Сохранение...'
         }
         else if (!isLoading) {
-            document.querySelector('.popup__button_loading').textContent = `Сохранить`;
+          //  document.querySelector('.popup__button_loading').textContent = `Сохранить`;
+          this._submitButton.classList.remove('popup__button_loading');
+          this._submitButton.textContent = this._buttonText;
+
         }
     }
 
