@@ -1,9 +1,8 @@
 import { Popup } from './Popup.js';
 
-export class PopupDeleteCard extends Popup {
+export class PopupWithDelete extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
-        this._buttonElement = this._popup.querySelector('.popup__button');
         this._form = this._popup.querySelector('.popup__container_delete');
     }
 

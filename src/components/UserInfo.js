@@ -12,7 +12,6 @@ export class UserInfo {
             text: this._userInfoAbout.textContent,
             avatar: this._userAvatar.src
         }
-          console.log(userProfile)
         return userProfile;
     }
 

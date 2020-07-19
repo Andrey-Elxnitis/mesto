@@ -92,7 +92,8 @@ export class Card {
         //возвращаем готовую карточку
         return this._element;
     }
-
+    
+    //метод удаления карточки из DOM
     delete() {
         this._element.remove();
         this._element = null;

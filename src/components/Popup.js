@@ -3,6 +3,7 @@ export class Popup {
         this._popup = popupSelector;
         this._handleEscClose = this._handleEscClose.bind(this);
         this._handleOverlayClose = this._handleOverlayClose.bind(this);
+        this._deletePopup = document.querySelector('.popup__button_delete');
     }
 
     
@@ -25,7 +26,7 @@ export class Popup {
         this._popup.classList.add('popup_active');
         document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('mousedown', this._handleOverlayClose);
-       // document.querySelector('#delete').focus();
+        this._deletePopup.focus();
     }
 
     
