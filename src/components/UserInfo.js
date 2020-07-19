@@ -12,15 +12,15 @@ export class UserInfo {
             text: this._userInfoAbout.textContent,
             avatar: this._userAvatar.src
         }
-
+          console.log(userProfile)
         return userProfile;
     }
 
     //метод принимает новые данные пользователя и добавляет их на страницу
-    setUserInfo(dataUser) {
-        this._userName.textContent = dataUser.name;
-        this._userInfoAbout.textContent = dataUser.about;
-        this._userAvatar.src = dataUser.avatar;
+    setUserInfo(data) {
+        this._userName.textContent = data.name;
+        this._userInfoAbout.textContent = data.about;
+        this._userAvatar.src = data.avatar;
     }
 
     //метод установки нового аватара

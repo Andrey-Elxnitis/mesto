@@ -26,20 +26,13 @@ export class PopupWithForm extends Popup {
         this._submitForm(this.getInputValues());
     }
 
-    //метод закрытия формы
-    close() {
-        super.close();
-    }
-
     //метод отображения загрузки при отправке данных на сервер
     sendingLoading(isLoading) {
         if (isLoading) {
-           // document.querySelector('.popup__button_loading').textContent = `Сохранение...`;
            this._submitButton.classList.add('popup__button_loading');
            this._submitButton.textContent = 'Сохранение...'
         }
         else if (!isLoading) {
-          //  document.querySelector('.popup__button_loading').textContent = `Сохранить`;
           this._submitButton.classList.remove('popup__button_loading');
           this._submitButton.textContent = this._buttonText;
 

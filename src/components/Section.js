@@ -1,12 +1,12 @@
 export class Section {
-    constructor({ renderer }, containerSelector) {
-       // this._getCards = getCards;
+    constructor(data, { renderer }, containerSelector) {
         this._renderer = renderer;
         this._containerSelector = containerSelector;
+        this._arrCards = data;
     }
 
-    render(api) {
-        api.reverse().forEach((item) => {
+    render() {
+        this._arrCards.reverse().forEach((item) => {
             this._renderer(item)
         })
     }
