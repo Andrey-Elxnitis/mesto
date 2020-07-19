@@ -1,4 +1,4 @@
-//import './index.css';
+import './index.css';
 
 import { Card } from '../components/Card.js';
 import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
