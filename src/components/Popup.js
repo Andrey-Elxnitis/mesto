@@ -25,6 +25,7 @@ export class Popup {
         this._popup.classList.add('popup_active');
         document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('mousedown', this._handleOverlayClose);
+        document.querySelector('#delete').focus();
     }
 
     

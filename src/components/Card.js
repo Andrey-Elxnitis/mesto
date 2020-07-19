@@ -48,8 +48,8 @@ export class Card {
         });
 
         //установили слушатель удаления карточки
-        this._element.querySelector('.element__delete').addEventListener('click', (e) => {
-            this._deleteCard(e);
+        this._element.querySelector('.element__delete').addEventListener('click', () => {
+            this._deleteCard();
         });
 
         //установили слушатель открытия попапа фото карточки
@@ -91,5 +91,10 @@ export class Card {
 
         //возвращаем готовую карточку
         return this._element;
+    }
+
+    delete() {
+        this._element.remove();
+        this._element = null;
     }
 }
