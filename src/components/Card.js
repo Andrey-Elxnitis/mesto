@@ -67,7 +67,7 @@ export class Card {
         const elementImage = this._element.querySelector('.element__image');
         //находим название карточки
         const elementTitle = this._element.querySelector('.element__title');
-        //находим счетчки лайков
+        //находим счетчик лайков
         const elementLikeCounter = this._element.querySelector('.element__like-counter');
         //находим лайк
         const elementLike = this._element.querySelector('.element__like');
