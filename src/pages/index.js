@@ -1,4 +1,4 @@
-//import './index.css';
+import './index.css';
 
 import { Card } from '../components/Card.js';
 import { PopupWithDelete } from '../components/PopupWithDelete.js';
@@ -157,49 +157,56 @@ Promise.all([api.getUserInfo(), api.getCards()])
   //id пользователя
   const userId = data[0]._id;
 
+
+ //функция собирает карточку
+ function createCard(data, userId) {
+  const card = new Card(data, userId, {
+    cardSelector: '#element-template',
+    handleCardClick: () => {
+      popupPhotoCard.open(data);
+    },
+    deleteCards: () => {
+      popupWithDelete.open();
+      popupWithDelete.setHandleSubmit( () => {
+        api.deleteCard(data._id)
+        .then(() => {
+          card.delete();
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+      })
+    },
+    handleLike: () => {
+      api.addLike(data._id)
+      .then((data) => {
+        card.likeCounterCard(data.likes);
+        card.likeCard();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    },
+    handleDeleteLike: () => {
+      api.deleteLike(data._id)
+      .then((data) => {
+        card.likeCounterCard(data.likes);
+        card.likeCard();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  });
+  const cardElement = card.generateCard(data);
+  cardSheet.addItem(cardElement);
+ }
+
+
   //загружаю карточки на сайт с сервера
   const cardSheet = new Section(data[1], {
     renderer: (data) => {
-      const card = new Card(data, userId, {
-        cardSelector: '#element-template',
-        handleCardClick: () => {
-          popupPhotoCard.open(data);
-        },
-        deleteCards: () => {
-          popupWithDelete.open();
-          popupWithDelete.setHandleSubmit( () => {
-            api.deleteCard(data._id)
-            .then(() => {
-              card.delete();
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-          })
-        },
-        handleLike: () => {
-          api.addLike(data._id)
-          .then((data) => {
-            card.likeCounterCard(data.likes);
-            card.likeCard();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        },
-        handleDeleteLike: () => {
-          api.deleteLike(data._id)
-          .then((data) => {
-            card.likeCounterCard(data.likes);
-            card.likeCard();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        }
-      });
-    const cardElement = card.generateCard(data);
-    cardSheet.addItem(cardElement);
+      createCard(data, userId);
   }
 }, elements);
 
@@ -214,46 +221,7 @@ const cardForm = new PopupWithForm(popupCard, {
     const inputValues = cardForm.getInputValues();
     api.addCard(inputValues)
     .then((data) => {
-      const card = new Card(data, userId, {
-        cardSelector: '#element-template',
-        handleCardClick: () => {
-          popupPhotoCard.open(data);
-        },
-        deleteCards: () => {
-          popupWithDelete.open();
-          popupWithDelete.setHandleSubmit( () => {
-            api.deleteCard(data._id)
-            .then(() => {
-              card.delete();
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-          })
-        },
-        handleLike: () => {
-          api.addLike(data._id)
-          .then((data) => {
-            card.likeCounterCard(data.likes);
-            card.likeCard();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        },
-        handleDeleteLike: () => {
-          api.deleteLike(data._id)
-          .then((data) => {
-            card.likeCounterCard(data.likes);
-            card.likeCard();
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-        }
-      });
-      const cardElement = card.generateCard(data);
-      cardSheet.addItem(cardElement);
+      createCard(data, userId);
     })
     .catch((err) => {
       console.log(err);
